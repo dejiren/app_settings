@@ -80,10 +80,12 @@ class AppSettings {
 
   /// Future async method call to open notification channel.
   static Future<void> openNotificationChannel({
-    String channelID,
+    required String channelID,
+    bool asAnotherTask = false,
   }) async {
     _channel.invokeMethod('notificationchannel', {
       'channelID': channelID,
+      'asAnotherTask': asAnotherTask,
     });
   }
 
