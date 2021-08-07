@@ -104,7 +104,7 @@ class AppSettingsPlugin() : MethodCallHandler, FlutterPlugin, ActivityAware {
                 openSettings(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS, asAnotherTask)
             }
         } else if (call.method == "notificationchannel") {
-           val id = call.argument("channelID");
+           val id = call.argument<String>("channelID");
            val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
                    .putExtra(Settings.EXTRA_APP_PACKAGE, this.activity.packageName)
                    .putExtra(Settings.EXTRA_CHANNEL_ID, id)
