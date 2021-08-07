@@ -103,6 +103,13 @@ class AppSettingsPlugin() : MethodCallHandler, FlutterPlugin, ActivityAware {
             } else {
                 openSettings(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS, asAnotherTask)
             }
+        } else if (call.method == "notificationchannel") {
+           val id = call.argument("channelID");
+           val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
+                   .putExtra(Settings.EXTRA_APP_PACKAGE, this.activity.packageName)
+                   .putExtra(Settings.EXTRA_CHANNEL_ID, id)
+           if (asAnotherTask) intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+           this.activity.startActivity(intent)         
         } else if (call.method == "nfc") {
             openSettings(Settings.ACTION_NFC_SETTINGS, asAnotherTask)
         } else if (call.method == "sound") {
